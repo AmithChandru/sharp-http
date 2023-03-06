@@ -8,6 +8,10 @@ const DetailsProvider = (props) => {
   const addDetails = (item) => {
     setDetails(item);
     localStorage.setItem('userDetails', item);
+    setTimeout(() => {
+      setDetails(null);
+      localStorage.removeItem('userDetails');
+    }, 300000);
   }
 
   const removeDetails = () => {
