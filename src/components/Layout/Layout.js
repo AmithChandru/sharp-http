@@ -1,13 +1,16 @@
 import { Fragment } from 'react';
+import DetailsProvider from '../Store/DetailsProvider';
 
 import MainNavigation from './MainNavigation';
 
 const Layout = (props) => {
   return (
-    <Fragment>
-      <MainNavigation />
-      <main>{props.children}</main>
-    </Fragment>
+    <DetailsProvider>
+      <Fragment>
+        <MainNavigation />
+        <main>{props.children}</main>
+      </Fragment>
+    </DetailsProvider>
   );
 };
 

@@ -1,8 +1,12 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import DetailsContext from '../Store/DetailsContext';
 
 import classes from './MainNavigation.module.css';
 
 const MainNavigation = () => {
+
+  const detailsCtx = useContext(DetailsContext);
   return (
     <header className={classes.header}>
       <Link to='/'>
@@ -11,13 +15,13 @@ const MainNavigation = () => {
       <nav>
         <ul>
           <li>
-            <Link to='/auth'>Login</Link>
+            {!detailsCtx.details && <Link to='/auth'>Login</Link>}
           </li>
           <li>
-            <Link to='/profile'>Profile</Link>
+            {detailsCtx.details && <Link to='/profile'>Profile</Link>}
           </li>
           <li>
-            <button>Logout</button>
+            {detailsCtx.details && <button onClick={() => detailsCtx.removeDetails()}>Logout</button>}
           </li>
         </ul>
       </nav>
