@@ -35,11 +35,12 @@ const AuthForm = () => {
         }
       }).then((res) => {
         if (res.ok) {
-          console.log(res);
-          detailsCtx.addDetails(res);
+          res.json().then((data) => {
+            detailsCtx.addDetails(data);
+          })
         } else {
           return res.json().then((data) => {
-            console.log(data, 'error');
+            alert(data.error.message);
           })
         }
       })
@@ -56,7 +57,7 @@ const AuthForm = () => {
         }
       }).then((res) => {
         if(res.ok) {
-          console(res);
+          console.log(res);
         } else {
           return res.json().then((data) => {
             alert(data.error.message);
