@@ -1,4 +1,5 @@
 import { useState, useRef, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import DetailsContext from '../Store/DetailsContext';
 
 import classes from './AuthForm.module.css';
@@ -8,6 +9,7 @@ const AuthForm = () => {
   const passwordInputRef = useRef();
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
   const detailsCtx = useContext(DetailsContext);
 
@@ -37,6 +39,7 @@ const AuthForm = () => {
         if (res.ok) {
           res.json().then((data) => {
             detailsCtx.addDetails(data);
+            history.push('/profile');
           })
         } else {
           return res.json().then((data) => {
